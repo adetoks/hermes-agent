@@ -28,7 +28,9 @@ from typing import Optional
 logger = logging.getLogger(__name__)
 
 _SKILL_NAME = "ai-firstify"
-_SKILL_DIR = Path(__file__).parent / "skills" / "ai-firstify"
+# Resolve to an absolute path so the reference paths the slash command hands
+# to the agent for read_file are valid regardless of the process CWD.
+_SKILL_DIR = (Path(__file__).parent / "skills" / "ai-firstify").resolve()
 _SKILL_MD = _SKILL_DIR / "SKILL.md"
 _SKILL_DESC = (
     "Audit, re-engineer, or bootstrap a project to align with the 9 AI-first "
